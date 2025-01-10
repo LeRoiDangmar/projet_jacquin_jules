@@ -16,6 +16,8 @@ module.exports = app => {
     router.get('/produits-featured', catalogue.getProduitsFeatured);
     
     router.get('/categories', catalogue.getCategories);
+
+    router.get('/search/:query', catalogue.search);
   
     app.use('/api/catalogue', router);
   };

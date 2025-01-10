@@ -20,10 +20,13 @@ export class SignupComponent {
     private router: Router
   ) {
     this.signupForm = this.fb.group({
-      username: ['', [Validators.required, Validators.minLength(3)]], // Changed to 'username'
+      name: ['', [Validators.required, Validators.minLength(3)]],
+      email: ['', [Validators.required, Validators.email]], // Nouveau champ Email
       password: ['', [Validators.required, Validators.minLength(6)]],
-      confirmPassword: ['', Validators.required]
+      confirmPassword: ['', Validators.required],
+      adresse: ['', Validators.required] // Nouveau champ Adresse postale
     }, { validators: this.passwordMatchValidator });
+    
   }
 
   passwordMatchValidator(form: FormGroup) {
@@ -33,8 +36,8 @@ export class SignupComponent {
 
   onSubmit() {
     if (this.signupForm.valid) {
-      const { username, password } = this.signupForm.value;
-      this.authService.signup(username, password).subscribe({
+      const { name, password, email, adresse } = this.signupForm.value;
+      this.authService.signup(name, password, email, adresse).subscribe({
         next: (response) => {
           this.successMessage = response.message;
           this.errorMessage = '';

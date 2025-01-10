@@ -17,6 +17,7 @@ export class SearchComponent {
 
   articles: ArticlePreview[] = [];
   query: string= ""
+  error: boolean = false;
 
   ngOnInit() {
     const routeSubscription = this.route.paramMap.subscribe((params: ParamMap) => {
@@ -38,11 +39,15 @@ export class SearchComponent {
     const fetchSubscription = this.fetcherService.fetchArticleByQuery(this.query || "").subscribe({
       next: (data) => {
         this.articles = data;
+        this.error = false;
       },
       error: (error) => {
         console.error('Error fetching articles:', error);
+        this.error = true;
+        this.articles = [];
       }
     });
     this.subscription.add(fetchSubscription);
   }
+
 }

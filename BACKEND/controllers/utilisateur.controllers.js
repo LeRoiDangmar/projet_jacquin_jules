@@ -57,6 +57,8 @@ exports.signup = async (req, res) => {
   try {
     const utilisateur = {
       login: req.body.login,
+      email: req.body.email,
+      adresse: req.body.adresse,
       password: req.body.password
     };
 
@@ -82,12 +84,16 @@ exports.signup = async (req, res) => {
     const newUser = await Utilisateurs.create({
       id: userId,
       nom: utilisateur.login,
-      password: hashedPassword
+      password: hashedPassword,
+      email: utilisateur.email,
+      adresse: utilisateur.adresse
     });
 
     const user = {
       id: newUser.id,
       name: newUser.nom,
+      email: newUser.email,
+      adresse: newUser.adresse
     };
 
     const accessToken = generateAccessToken(user);
@@ -109,5 +115,5 @@ exports.signup = async (req, res) => {
 
 
 exports.update = (res, req) => {
-  
+
 }

@@ -20,7 +20,7 @@ export class LoginComponent {
     private router: Router
   ) {
     this.loginForm = this.fb.group({
-      username: ['', [Validators.required]], // Changed to 'username'
+      username: ['', [Validators.required]],
       password: ['', Validators.required]
     });
   }
@@ -31,8 +31,6 @@ export class LoginComponent {
       this.authService.login(username, password).subscribe({
         next: (response) => {
           this.errorMessage = '';
-          // Redirect to a protected route or dashboard
-          //this.router.navigate(['/dashboard']); // Ensure you have a dashboard route
         },
         error: (error) => {
           this.errorMessage = error.error.message || 'An error occurred during login.';

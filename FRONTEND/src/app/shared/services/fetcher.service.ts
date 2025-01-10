@@ -83,23 +83,8 @@ export class FetcherService {
     )
   }
 
-  public fetchOneCategorie(id: string): Observable<Categorie> {
-    return this.http.get<Categorie[]>(this.baseUrl + "getCategories").pipe(
-      map(items => {
-        const item = items.find(item => item.id === id);
-        if (item) {
-          return item;
-        } else {
-          throw new Error(`Categorie with id ${id} not found`);
-        }
-      })
-    )
-  }
-
-
   public fetchArticleByQuery(query: string): Observable<ArticlePreview[]> {
-    return this.http.get<ArticlePreview[]>(this.baseUrl + "getProducts").pipe(
-      map(items => items.filter(item => item.nom.toLowerCase().includes(query.toLowerCase()))),
+    return this.http.get<ArticlePreview[]>(this.baseUrl + "/search/" + query).pipe(
       map(items => items.map(item => ({
         id: String(item.id),
         nom: item.nom,

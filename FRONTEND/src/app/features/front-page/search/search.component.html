@@ -1,5 +1,6 @@
 <div class="articles-container">
     <div class="articles">
         <app-article-preview *ngFor="let article of articles" [article]="article"></app-article-preview>
+        <div class="error" *ngIf="error"> Aucun article n'a pu être trouvé </div>
     </div>
 </div>

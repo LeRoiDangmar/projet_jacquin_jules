@@ -10,7 +10,6 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 
 import { ReactiveFormsModule } from '@angular/forms';
-import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { AuthService } from './services/auth.service';
 
 const routes: Routes = [
@@ -33,13 +32,6 @@ const routes: Routes = [
     MatFormFieldModule,
     ReactiveFormsModule,
     HttpClientModule,
-  ],
-  providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: AuthInterceptor, // Add the interceptor
-      multi: true
-    }
   ],
 })
 export class AuthModule { }

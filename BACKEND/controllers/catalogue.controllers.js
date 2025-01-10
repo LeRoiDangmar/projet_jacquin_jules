@@ -122,3 +122,39 @@ exports.getCategories = (req, res) => {
         });
     });
 };
+
+exports.search = (req, res) => {
+    const query = req.params.query;
+
+    if (!query || typeof query !== 'string') {
+        return res.status(400).json({
+            message: 'Invalid search query provided.'
+        });
+    }
+
+    Produits.findAll({
+        where: {
+            nom: {
+                [Op.iLike]: `%${query}%` 
+            }
+        },
+        attributes: ['id', 'nom', 'prix', 'note', 'id_categorie', 'en_avant']
+    })
+    .then(data => {
+        if (data.length > 0) {
+            const produits = data.map(produit => produit.get({ plain: true }));
+            res.setHeader('Content-Type', 'application/json');
+            res.status(200).json(produits);
+        } else {
+            res.status(404).json({
+                message: 'No products found matching the query.'
+            });
+        }
+    })
+    .catch(err => {
+        console.error("Error searching products:", err);
+        res.status(500).json({
+            message: err.message || "An error occurred while searching for products."
+        });
+    });
+};
