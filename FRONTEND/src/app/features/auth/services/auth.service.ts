@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { environment } from '../../../../environments/environments';
+import { Utilisateur } from '../../../shared/models/Utilisateur.model';
 
 
 interface SignupResponse {
@@ -45,7 +46,7 @@ export class AuthService {
   }
 
 
-  login(username: string, password: string): Observable<LoginResponse> {
+login(username: string, password: string): Observable<LoginResponse> {
     const url = `${this.apiUrl}/login`;
 
     const body = {
@@ -63,4 +64,12 @@ export class AuthService {
   logout(): void {
     this.router.navigate(['/login']);
   }
+
+  getUsers(): Observable<Utilisateur[]> {
+    const url = `${this.apiUrl}/getusers`
+    return this.http.get<Utilisateur[]>(url)
+  }
+
 }
+
+

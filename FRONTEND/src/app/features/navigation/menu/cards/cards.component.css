@@ -1,6 +1,6 @@
 .container {
     position: absolute;
-    right: 20px;
+    right: 300px;
     top: 5px;
     display: flex;
     justify-content: flex-end; /* Aligne le bouton à droite */

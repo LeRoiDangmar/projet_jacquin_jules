@@ -9,6 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { CartComponent } from './menu/cart/cart.component';
 import { AuthModule } from '../auth/auth.module';
 import { AuthComponent } from './menu/auth/auth.component';
+import { UsersComponent } from './menu/users/users.component';
 
 const routes: Routes = [
   { path: '', component: MenuComponent }
@@ -21,7 +22,8 @@ const routes: Routes = [
     CategoriesComponent,
     CardsComponent,
     CartComponent,
-    AuthComponent
+    AuthComponent,
+    UsersComponent
   ],
   imports: [
     CommonModule,
@@ -38,7 +40,8 @@ const routes: Routes = [
     CardsComponent,
     RouterOutlet,
     FormsModule,
-    AuthModule
+    AuthModule,
+    UsersComponent
   ]
 })
 export class NavigationModule { }

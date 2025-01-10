@@ -1,7 +1,8 @@
 /* Container styles */
 .searchbar-container {
     display: flex; /* Enables flexbox */
-    justify-content: center; /* Centers horizontally */
+    justify-content: left; /* Centers horizontally */
+    margin-left: 10vw;
     width: 100vw; /* Full width of the page */
   }
   

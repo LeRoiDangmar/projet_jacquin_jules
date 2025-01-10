@@ -37,19 +37,10 @@ export class FetcherService {
         'Content-Type': 'application/json',
       }),
     };
-    return this.http.get<ArticleFull[]>(
+    return this.http.get<ArticleFull>(
       this.baseUrl + "/produits-detail/" + id ,
       httpOptions
-    ).pipe(
-      map(items => {
-        const item = items.find(item => item.id == id);
-        if (item) {
-          return item;
-        } else {
-          throw new Error(`Article with id ${id} not found`);
-        }
-      })
-    );
+    ).pipe()
   }
 
   // renvoie les articles pour une categorie donnée
