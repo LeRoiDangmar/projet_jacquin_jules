@@ -1,0 +1,34 @@
+<div class="container mt-5">
+    <h2>Liste des Cartes</h2>
+  
+    <div class="form-group">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Rechercher par nom ou code de la carte"
+        [(ngModel)]="searchTerm">
+    </div>
+
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Nom de la Carte</th>
+          <th>Code de la Carte</th>
+          <th>CCV</th>
+          <th>Expiration</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let card of cards$ | async | filterCards:searchTerm; let i = index">
+          <td>{{ card.nomCarte }}</td>
+          <td>{{ card.codeCarte | formatCardCode }}</td>
+          <td>{{ card.ccv }}</td>
+          <td>{{ card.mois }}/{{ card.annee }}</td>
+          <td>
+            <button class="btn btn-danger btn-sm" (click)="deleteCard(i)">Supprimer</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>

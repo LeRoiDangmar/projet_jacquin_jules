@@ -1,0 +1,21 @@
+.container {
+    position: absolute;
+    right: 300px;
+    top: 5px;
+    display: flex;
+    justify-content: flex-end; /* Aligne le bouton à droite */
+    align-items: center; /* Centre verticalement si besoin */
+}
+
+.cart{
+    background-color: var(--primary);
+    color: var(--texte); /* Texte en blanc pour contraste */
+    border: none;
+    border-radius: 5px;
+    padding: 5px 20px; /* Ajustement du padding pour mieux contenir le texte */
+    font-size: 15px;
+    cursor: pointer;
+    height: 50px; /* Optionnel : peut être ajusté selon le padding */
+    width: 250px;
+}
+

@@ -1,0 +1,9 @@
+<p>PANIER</p>
+<div *ngFor="let c of liste$ | async">
+  {{ c.article.nom }}
+  Quantité : {{c.quantite}} 
+  <button (click)="delArticle(c.article)">Supprimer</button>
+  <button (click)="addArticle(c.article)">Ajouter</button>
+</div>
+
+PRIX TOTAL : {{prix$ | async}}

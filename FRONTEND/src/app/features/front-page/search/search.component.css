@@ -1,0 +1,12 @@
+.articles-container {
+    padding: 1rem;
+    background: #f9f9f9;
+}
+
+.articles {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem; /* spacing between cards */
+    justify-content: center;
+    align-items: stretch;
+}

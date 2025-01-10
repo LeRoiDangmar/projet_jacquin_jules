@@ -1,0 +1,72 @@
+[
+    {
+        "id": "informatique",
+        "libelle": "Informatique",
+        "description": "Produits liés aux ordinateurs, composants et équipements informatiques, tels que les ordinateurs portables, de bureau, cartes graphiques et autres périphériques internes."
+    },
+    {
+        "id": "peripheriques",
+        "libelle": "Périphériques",
+        "description": "Claviers, souris, webcams, tapis de souris et autres équipements destinés à améliorer l'expérience d'utilisation de l'ordinateur."
+    },
+    {
+        "id": "stockage",
+        "libelle": "Stockage",
+        "description": "Disques durs, SSD, clés USB et autres solutions pour la sauvegarde et le transport de données."
+    },
+    {
+        "id": "bureau",
+        "libelle": "Bureau",
+        "description": "Imprimantes, lampes de bureau, scanners et autres équipements pour un environnement de travail confortable et productif."
+    },
+    {
+        "id": "audio",
+        "libelle": "Audio",
+        "description": "Casques, enceintes, microphones, barres de son et autres appareils pour une expérience sonore de qualité."
+    },
+    {
+        "id": "reseau",
+        "libelle": "Réseau",
+        "description": "Routeurs, répéteurs, routeurs mesh, amplificateurs de signal et autres équipements pour une connectivité Internet fiable et étendue."
+    },
+    {
+        "id": "accessoires",
+        "libelle": "Accessoires",
+        "description": "Hubs, chargeurs, supports, coques, câbles et autres petits équipements complémentaires pour vos appareils."
+    },
+    {
+        "id": "creation",
+        "libelle": "Création",
+        "description": "Tablettes graphiques, outils de design et autres instruments destinés aux créatifs et artistes numériques."
+    },
+    {
+        "id": "domotique",
+        "libelle": "Domotique",
+        "description": "Appareils connectés pour la maison intelligente, tels que stations météo, lampes connectées et box domotiques."
+    },
+    {
+        "id": "jeux-video",
+        "libelle": "Jeux vidéo",
+        "description": "Manettes de jeu, casques VR, drones et autres accessoires pour améliorer votre expérience de jeu."
+    },
+    {
+        "id": "smartphones",
+        "libelle": "Smartphones",
+        "description": "Téléphones portables, coques de protection, chargeurs rapides et autres accessoires pour vos appareils mobiles."
+    },
+    {
+        "id": "logiciels",
+        "libelle": "Logiciels",
+        "description": "Clés de licence pour systèmes d'exploitation, antivirus, logiciels de montage vidéo et autres programmes informatiques."
+    },
+    {
+        "id": "multimedia",
+        "libelle": "Multimédia",
+        "description": "Projecteurs, écrans, moniteurs ultra-larges et autres dispositifs audiovisuels pour une expérience multimédia immersive."
+    },
+    {
+        "id": "securite",
+        "libelle": "Sécurité",
+        "description": "Câbles antivol, caméras de sécurité, filtres de confidentialité et autres solutions pour protéger vos appareils et vos données."
+    }
+]

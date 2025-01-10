@@ -1,0 +1,21 @@
+<div class="articlefull-container">
+  <div class="articlefull-image" *ngIf="articlefull.images && articlefull.images.length">
+    <img [src]="articlefull.images[0]" [alt]="articlefull.nom" />
+  </div>
+  <div class="articlefull-details">
+    <h2 class="articlefull-title">{{ articlefull.nom }}</h2>
+    <p><strong>Description:</strong> {{ articlefull.description }}</p>
+    <p><strong>Prix:</strong> {{ articlefull.prix }} €</p>
+    <p><strong>Dimension:</strong> {{ articlefull.dimensions }}</p>
+    <p><strong>Poids:</strong> {{ articlefull.poids }} kg</p>
+    <p><strong>Note:</strong> {{ articlefull.note }} / 5</p>
+    <p><strong>Catégorie ID:</strong> {{ articlefull.id_categorie }}</p>
+    <p>
+      <strong>En Avant:</strong>
+      <span class="status-badge" [class.active]="articlefull.en_avant">
+        {{ articlefull.en_avant ? 'Oui' : 'Non' }}
+      </span>
+    </p>
+    <hr>
+  </div>
+</div>

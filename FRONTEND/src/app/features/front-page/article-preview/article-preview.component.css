@@ -1,0 +1,53 @@
+.article-card {
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    width: 280px;
+    height: 320px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease-in-out;
+}
+
+.article-card:hover {
+    transform: translateY(-4px);
+}
+
+.article-image img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.article-content {
+    padding: 1rem;
+    flex: 1 1 auto;
+}
+
+.article-title {
+    margin: 0;
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.article-price,
+.article-category,
+.article-rating {
+    margin: 0;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.article-actions {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.75rem 1rem 1rem 1rem;
+    border-top: 1px solid #eee;
+}
+
+.article-actions .btn {
+    font-size: 0.85rem;
+}

@@ -1,0 +1,31 @@
+.v-menu-container{
+    display: flex;
+    position: fixed;
+    height: calc(100vh - 60px);
+    margin-top: 60px;
+    width: 170px;
+    background-color: var(--secondary);
+    opacity: 70%;
+    border-right: solid;
+    border-color: var(--primary);
+}
+
+.h-menu-container{
+    display: flex;
+    position: fixed;
+    width: 100vw;
+    height: 60px;
+    background-color: var(--secondary);
+    opacity: 70%;
+    border-bottom: solid;
+    border-color: var(--primary);
+}
+
+
+.logo{
+    position:fixed;
+    width: 125px;
+    margin-left: 30px;
+    margin-top: 20px;
+    cursor: pointer;
+}

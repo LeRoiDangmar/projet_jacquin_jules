@@ -1,0 +1,98 @@
+<div class="container mt-5">
+    <form [formGroup]="carteForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="nomCarte">Nom de la Carte</label>
+        <input
+          type="text"
+          id="nomCarte"
+          formControlName="nomCarte"
+          class="form-control"
+          [ngClass]="{ 'is-invalid': submitted && nomCarte.invalid }"
+          placeholder="Entrez le nom de la carte"
+        />
+        <div *ngIf="submitted && nomCarte.errors" class="invalid-feedback">
+          <div *ngIf="nomCarte.hasError('required')">Le nom de la carte est requis.</div>
+          <div *ngIf="nomCarte.hasError('minlength')">
+            Le nom de la carte doit contenir au moins 3 caractères.
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="codeCarte">Code de la Carte</label>
+        <input
+          type="text"
+          id="codeCarte"
+          formControlName="codeCarte"
+          class="form-control"
+          mask="0000 0000 0000 0000"
+          [ngClass]="{ 'is-invalid': submitted && codeCarte.invalid }"
+          placeholder="XXXX XXXX XXXX XXXX"
+        />
+        <div *ngIf="submitted && codeCarte.errors" class="invalid-feedback">
+          <div *ngIf="codeCarte.hasError('required')">Le code de la carte est requis.</div>
+          <div *ngIf="codeCarte.hasError('pattern')">Le code de la carte doit contenir 16 chiffres.</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="ccv">CCV</label>
+        <input
+          type="password"
+          id="ccv"
+          formControlName="ccv"
+          class="form-control"
+          mask="0000"
+          [ngClass]="{ 'is-invalid': submitted && ccv.invalid }"
+          placeholder="XXX ou XXXX"
+        />
+        <div *ngIf="submitted && ccv.errors" class="invalid-feedback">
+          <div *ngIf="ccv.hasError('required')">Le CCV est requis.</div>
+          <div *ngIf="ccv.hasError('pattern')">Le CCV doit contenir 3 ou 4 chiffres.</div>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <!-- Mois -->
+        <div class="form-group col-md-6">
+          <label for="mois">Mois</label>
+          <input
+            type="number"
+            id="mois"
+            formControlName="mois"
+            class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && mois.invalid }"
+            placeholder="MM"
+            min="1"
+            max="12"
+          />
+          <div *ngIf="submitted && mois.errors" class="invalid-feedback">
+            <div *ngIf="mois.hasError('required')">Le mois est requis.</div>
+            <div *ngIf="mois.hasError('min') || mois.hasError('max')">
+              Le mois doit être entre 1 et 12.
+            </div>
+          </div>
+        </div>
+  
+        <div class="form-group col-md-6">
+          <label for="annee">Année</label>
+          <input
+            type="number"
+            id="annee"
+            formControlName="annee"
+            class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && annee.invalid }"
+            placeholder="AAAA"
+          />
+          <div *ngIf="submitted && annee.errors" class="invalid-feedback">
+            <div *ngIf="annee.hasError('required')">L'année est requise.</div>
+            <div *ngIf="annee.hasError('pattern')">L'année doit contenir 4 chiffres.</div>
+          </div>
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Soumettre</button>
+      <button type="button" class="btn btn-secondary ml-2" (click)="onReset()">Réinitialiser</button>
+    </form>
+  </div>
+  

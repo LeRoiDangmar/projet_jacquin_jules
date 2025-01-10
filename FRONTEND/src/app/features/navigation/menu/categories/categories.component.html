@@ -1,0 +1,8 @@
+<div class="categories-container">
+    <h1 class="titre">Choisissez une catégorie</h1>
+    <div class="categorie-button">
+        <a class="categorie" *ngFor="let categorie of categories" [routerLink]="[link, categorie.id]">
+            {{ categorie.libelle }}
+        </a>
+    </div>
+</div>

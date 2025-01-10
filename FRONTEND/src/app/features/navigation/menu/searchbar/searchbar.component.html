@@ -1,0 +1,6 @@
+<div class="searchbar-container">
+    <input type="text" class="searchbar" [(ngModel)]="inputValue" placeholder="Rechercher..." (input)="onInputChange()" >
+    <img class="search-icon" src="assets/icons/search-svgrepo-com.svg">
+    <img *ngIf="croix" class="croix" src="assets/icons/cross-svgrepo-com.svg" (click)="emptySearch()">
+
+</div>

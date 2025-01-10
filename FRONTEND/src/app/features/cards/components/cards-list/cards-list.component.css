@@ -1,0 +1,109 @@
+/* cards-list.component.css */
+
+/* Style global pour la liste des cartes */
+.container {
+    padding: 20px;
+    background-color: #ffffff; /* Fond blanc pour la lisibilité */
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Style pour le titre */
+  h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #343a40;
+  }
+  
+  /* Style pour le champ de recherche */
+  .form-group input.form-control {
+    border-radius: 4px;
+    transition: border-color 0.3s;
+  }
+  
+  .form-group input.form-control:focus {
+    border-color: #28a745; /* Vert Bootstrap pour indiquer une recherche active */
+    box-shadow: none;
+  }
+  
+  /* Style pour la table */
+  table.table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: separate;
+    border-spacing: 0 10px; /* Espacement entre les lignes */
+  }
+  
+  table.table thead th {
+    background-color: #007bff;
+    color: #ffffff;
+    text-align: center;
+    padding: 10px;
+    border-bottom: none;
+    border-radius: 8px 8px 0 0;
+  }
+  
+  /* Style pour les lignes du corps de la table */
+  table.table tbody tr {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: background-color 0.3s;
+  }
+  
+  table.table tbody tr:hover {
+    background-color: #e2e6ea;
+  }
+  
+  /* Style pour les cellules */
+  table.table tbody td {
+    text-align: center;
+    padding: 12px;
+    vertical-align: middle;
+  }
+  
+  /* Style pour les boutons d'action */
+  button.btn-danger {
+    background-color: #dc3545;
+    border-color: #dc3545;
+    transition: background-color 0.3s, border-color 0.3s;
+  }
+  
+  button.btn-danger:hover {
+    background-color: #c82333;
+    border-color: #bd2130;
+  }
+  
+  /* Responsive : ajustement de la table sur petits écrans */
+  @media (max-width: 768px) {
+    table.table thead {
+      display: none;
+    }
+  
+    table.table, table.table tbody, table.table tr, table.table td {
+      display: block;
+      width: 100%;
+    }
+  
+    table.table tr {
+      margin-bottom: 15px;
+    }
+  
+    table.table td {
+      text-align: right;
+      padding-left: 50%;
+      position: relative;
+    }
+  
+    table.table td::before {
+      content: attr(data-label);
+      position: absolute;
+      left: 15px;
+      width: 45%;
+      padding-right: 10px;
+      white-space: nowrap;
+      text-align: left;
+      font-weight: bold;
+    }
+  }
+  

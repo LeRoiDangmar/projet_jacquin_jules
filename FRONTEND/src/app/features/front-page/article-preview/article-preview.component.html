@@ -1,0 +1,15 @@
+<div class="article-card" [routerLink]="[link, article.id]">
+    <div class="article-image">
+        <img [src]="article.images[0]" [alt]="article.nom" />
+    </div>
+    <div class="article-content">
+        <h3 class="article-title">{{ article.nom }}</h3>
+        <p class="article-price">Prix: {{ article.prix | currency:'EUR' }}</p>
+        <p class="article-rating">Note: {{ article.note }} / 5</p>
+    </div>
+    <div class="article-actions">
+        <button class="btn btn-outline-secondary" (click)="$event.stopPropagation(); addArticle()">
+            Ajouter au panier
+        </button>
+    </div>
+</div>

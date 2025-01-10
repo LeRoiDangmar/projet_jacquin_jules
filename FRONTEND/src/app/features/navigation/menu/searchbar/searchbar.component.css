@@ -1,0 +1,53 @@
+/* Container styles */
+.searchbar-container {
+    display: flex; /* Enables flexbox */
+    justify-content: center; /* Centers horizontally */
+    width: 100vw; /* Full width of the page */
+  }
+  
+  /* Search bar styles */
+  .searchbar {
+    width: 100%; /* Full width within max-width */
+    height: 15px;
+    max-width: 400px; /* Limit max width */
+    padding: 10px 15px; /* Inner spacing */
+    font-size: 16px; /* Adjust text size */
+    border: 2px solid #ccc; /* Border style */
+    outline: none; /* Remove focus outline */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions */
+    margin-top: 10px;
+  }
+  
+  .searchbar:focus {
+    border-color: #007bff; /* Change border color on focus */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Add glow effect on focus */
+  }
+  
+  .searchbar::placeholder {
+    color: #aaa; /* Placeholder text color */
+    font-style: italic; /* Optional styling for placeholder */
+  }
+  
+  .search-icon {
+    width: 20px;
+    margin-top: 10px;
+    margin-left: -30px;
+    cursor: pointer;
+    transition-duration: 0.3s;
+  }
+
+  .croix {
+    width: 28px;
+    margin-top: 10px;
+    margin-left: -50px;
+    cursor: pointer;
+    transition-duration: 0.3s;
+  }
+
+  .search-icon:hover {
+    width: 22px;
+  }
+
+  .croix:hover{
+    width: 30px;
+  }

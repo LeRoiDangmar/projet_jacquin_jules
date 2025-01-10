@@ -1,0 +1,73 @@
+.categories-container {
+  width: 100%; /* Take full width of the parent container */
+  display: flex;
+  flex-direction: column; /* Stack links vertically */
+  align-items: center;
+  text-align: center;
+  padding-top: 30px;
+}
+
+.categorie-button {
+  display: flex;
+  flex-direction: column; /* Stack items vertically */
+  align-items: center;    /* Center items horizontally */
+  gap: 10px;              /* Adds space between buttons */
+  width: 100%;            /* Ensure it takes the full width of the container */
+}
+
+/* Style du lien */
+.categorie {
+  position: relative;     /* Establishes a positioning context for the child */
+  display: inline-block;  /* Allows for positioning */
+  height: 20px;           /* Increased height for better appearance */
+  line-height: 40px;      /* Vertically center text */
+  font-size: 16px;
+  color: var(--text);
+  text-decoration: none;
+  transition: all 0.2s ease;
+  padding: 0 20px;        /* Added horizontal padding */
+}
+
+.categorie:hover {
+  text-decoration: underline;
+  transform: scale(1.05);
+  background-color: var(--hover-bg); /* Optional: Change background on hover */
+}
+
+/* Style du titre */
+.titre {
+  display: inline-block;
+  height: 20px;
+  line-height: 15px;
+  font-size: 20px; /* Increased font size for the title */
+  color: var(--text);
+  text-decoration: none;
+  transition: all 0.2s ease;
+  padding-bottom: 10px;
+  margin-bottom: 30px;
+  align-self: center;
+}
+
+/* Style de l'information supplémentaire */
+.categorie-information {
+  position: absolute;
+  top: -100%; /* Position it above the button */
+  left: 200%;
+  transform: translateX(-50%);
+  background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent background */
+  color: #fff; /* Text color */
+  border-radius: 1px;
+  white-space: nowrap; /* Prevent text wrapping */
+  opacity: 0; /* Hidden by default */
+  visibility: hidden; /* Hidden by default */
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+  z-index: 10; /* Ensure it appears above other elements */
+  pointer-events: none; /* Prevents hover issues */
+  font-size: 10px;
+}
+
+/* Show the information on hover */
+.categorie:hover .categorie-information {
+  opacity: 1;
+  visibility: visible;
+}

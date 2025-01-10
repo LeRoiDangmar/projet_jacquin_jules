@@ -1,0 +1,17 @@
+.layout {
+    display: flex;
+    flex-direction: row;
+    height: 100vh; /* or desired height */
+  }
+  
+  .menu-area {
+    width: 170px; /* fixed width for menu */
+    background: #f4f4f4;
+  }
+  
+  .content-area {
+    flex: 1; /* takes the rest of the space */
+    overflow: auto;
+    margin-top: 60px;
+  }
+  
