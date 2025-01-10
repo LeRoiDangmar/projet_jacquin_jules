@@ -3,7 +3,7 @@ import { ArticlePreview } from '../models/articlePreview.model';
 import { ArticleFull } from '../models/articleFull.model';
 import { Categorie } from '../models/categorie.model';
 import { Observable, map } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { environment } from '../../../environments/environments';
 
 @Injectable({
@@ -11,12 +11,12 @@ import { environment } from '../../../environments/environments';
 })
 export class FetcherService {
 
-  private baseUrl: string = `https://cnamapp-2cms.onrender.com/api/products/`;
+  private baseUrl: string = environment.backendCatalogue;
 
   constructor(private http: HttpClient) { }
 
   public fetchFeaturedArticles(): Observable<ArticlePreview[]> {
-    return this.http.get<ArticleFull[]>(this.baseUrl + "getProducts").pipe(
+    return this.http.get<ArticlePreview[]>(this.baseUrl + "/produits-featured").pipe(
       map(items => items.filter(item => item.en_avant === true)),
       map(items => items.map(item => ({
         id: String(item.id),
@@ -32,7 +32,15 @@ export class FetcherService {
   
   // Cette fonction renvoie toutes les infos d'un article
   public fetchArticleFull(id: string): Observable<ArticleFull> {
-    return this.http.get<ArticleFull[]>(this.baseUrl + "getProducts").pipe(
+    let httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      }),
+    };
+    return this.http.get<ArticleFull[]>(
+      this.baseUrl + "/produits-detail/" + id ,
+      httpOptions
+    ).pipe(
       map(items => {
         const item = items.find(item => item.id == id);
         if (item) {
@@ -46,7 +54,15 @@ export class FetcherService {
 
   // renvoie les articles pour une categorie donnée
   public fetchArticleByCategorie(cat: string): Observable<ArticlePreview[]> {
-    return this.http.get<ArticlePreview[]>(this.baseUrl + "getProducts").pipe(
+    let httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      }),
+    };
+    return this.http.get<ArticlePreview[]>(
+      this.baseUrl + "/produits-bycat/" + cat,
+      httpOptions
+    ).pipe(
       map(items => items.filter(item => item.id_categorie == cat)),
       map(items => items.map(item => ({
         id: String(item.id),
@@ -62,7 +78,7 @@ export class FetcherService {
 
   // renvoie les catégories
   public fetchCategories(): Observable<Categorie[]> {
-    return this.http.get<Categorie[]>(this.baseUrl + "getCategories").pipe(
+    return this.http.get<Categorie[]>(this.baseUrl + "/categories").pipe(
       map(items => items.filter(item => items))
     )
   }

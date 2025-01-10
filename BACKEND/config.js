@@ -1,5 +1,5 @@
 module.exports =  {
-    ACCESS_TOKEN_SECRET : "",
+    ACCESS_TOKEN_SECRET : "motdepasse123",
     BDD : {
     "host" :"dpg-cu0es5tumphs7382q7pg-a.frankfurt-postgres.render.com",
     "port" : "5432",

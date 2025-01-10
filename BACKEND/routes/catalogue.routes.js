@@ -7,7 +7,15 @@ module.exports = app => {
   
 
    
-    router.get("/", checkJwt,catalogue.get);
+    router.get('/produits-preview', catalogue.getProduitsPreview);
+
+    router.get('/produits/:id', catalogue.getProduitFull);
+    
+    router.get('/produits-bycat/:id_categorie', catalogue.getProduitsByCat);
+    
+    router.get('/produits-featured', catalogue.getProduitsFeatured);
+    
+    router.get('/categories', catalogue.getCategories);
   
     app.use('/api/catalogue', router);
   };
