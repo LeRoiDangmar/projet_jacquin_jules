@@ -9,7 +9,7 @@ module.exports = app => {
    
     router.get('/produits-preview', catalogue.getProduitsPreview);
 
-    router.get('/produits/:id', catalogue.getProduitFull);
+    router.get('/produits-detail/:id', catalogue.getProduitFull);
     
     router.get('/produits-bycat/:id_categorie', catalogue.getProduitsByCat);
     

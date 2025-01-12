@@ -114,6 +114,32 @@ exports.signup = async (req, res) => {
 };
 
 
-exports.update = (res, req) => {
+exports.getusers = async (req, res) => {
+  try {
+    // Fetch users with selected attributes
+    const users = await Utilisateurs.findAll({
+      attributes: ['nom', 'email', 'adresse'],
+    });
 
-}
+    if (users.length > 0) {
+      // Convert Sequelize instances to plain objects
+      const userList = users.map(user => user.get({ plain: true }));
+      
+      // Send the user list as a JSON response
+      res.status(200).json(userList);
+    } else {
+      // No users found
+      res.status(404).json({
+        message: 'No utilisateurs found.',
+      });
+    }
+  } catch (error) {
+    // Log the error for debugging purposes
+    console.error("Error retrieving users:", error);
+    
+    // Send a 500 Internal Server Error response
+    res.status(500).json({
+      message: error.message || "An error occurred while retrieving users.",
+    });
+  }
+};

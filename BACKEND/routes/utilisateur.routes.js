@@ -9,7 +9,7 @@ module.exports = app => {
     // login utilisateur
     router.post("/login", utilisateur.login);
     router.post("/signup", utilisateur.signup);
-    router.post("/update", checkJwt, utilisateur.update);
+    router.get("/getusers", checkJwt, utilisateur.getusers);
   
     app.use('/api/utilisateur', router);
   };
