@@ -114,32 +114,127 @@ exports.signup = async (req, res) => {
 };
 
 
-exports.getusers = async (req, res) => {
+exports.getuser = async (req, res) => {
   try {
-    // Fetch users with selected attributes
-    const users = await Utilisateurs.findAll({
+    const userId = jwtGetId(req.headers['authorization']);
+
+    const user = await Utilisateurs.findOne({
       attributes: ['nom', 'email', 'adresse'],
+      where: { id: userId }
     });
 
-    if (users.length > 0) {
-      // Convert Sequelize instances to plain objects
-      const userList = users.map(user => user.get({ plain: true }));
-      
-      // Send the user list as a JSON response
-      res.status(200).json(userList);
+    if (user) {
+      res.status(200).json(user.get({ plain: true }));
     } else {
-      // No users found
       res.status(404).json({
-        message: 'No utilisateurs found.',
+        message: 'Utilisateur non trouvé.'
       });
     }
   } catch (error) {
-    // Log the error for debugging purposes
-    console.error("Error retrieving users:", error);
-    
-    // Send a 500 Internal Server Error response
+    console.error("Error retrieving user:", error);
     res.status(500).json({
-      message: error.message || "An error occurred while retrieving users.",
+      message: error.message || "An error occurred while retrieving the user."
     });
   }
 };
+
+exports.deluser = async (req, res) => {
+  try {
+    const userId = jwtGetId(req.headers['authorization']);
+
+    const deletedRows = await Utilisateurs.destroy({
+      where: { id: userId }
+    });
+
+    if (deletedRows === 0) {
+      return res.status(404).json({
+        message: "Utilisateur non trouvé."
+      });
+    }
+
+    res.status(200).json({
+      message: "Utilisateur supprimé avec succès."
+    });
+  } catch (error) {
+    console.error("Error deleting user:", error);
+    res.status(500).json({
+      message: error.message || "Une erreur est survenue lors de la suppression de l'utilisateur."
+    });
+  }
+};
+
+
+exports.updateuser = async (req, res) => {
+  try {
+    const userId = jwtGetId(req.headers['authorization']);
+
+    const updateData = {};
+
+    if (req.body.login) {
+      updateData.nom = req.body.login;
+    }
+
+    if (req.body.email) {
+      updateData.email = req.body.email;
+    }
+
+    if (req.body.adresse) {
+      updateData.adresse = req.body.adresse;
+    }
+
+
+    const [updatedRows] = await Utilisateurs.update(updateData, {
+      where: { id: userId }
+    });
+
+    if (updatedRows === 0) {
+      return res.status(404).json({
+        message: "Utilisateur non trouvé ou aucune donnée à mettre à jour."
+      });
+    }
+
+    const updatedUser = await Utilisateurs.findOne({
+      attributes: ['id', 'nom', 'email', 'adresse'],
+      where: { id: userId }
+    });
+
+    res.status(200).json({
+      message: "Utilisateur mis à jour avec succès.",
+      user: updatedUser
+    });
+
+  } catch (error) {
+    console.error("Erreur lors de la mise à jour de l'utilisateur:", error);
+    res.status(500).json({
+      message: error.message || "Une erreur est survenue lors de la mise à jour de l'utilisateur."
+    });
+  }
+};
+
+
+function jwtGetId(authorizationHeader) {
+  if (!authorizationHeader) {
+    throw new Error('Authorization header is missing');
+  }
+
+  // The header is expected to be in the format "Bearer <token>"
+  const token = authorizationHeader.replace('Bearer ', '').trim();
+
+  if (!token) {
+    throw new Error('JWT token is missing from the Authorization header');
+  }
+
+  try {
+    // Make sure you have set process.env.JWT_SECRET with your secret key
+    const decoded = jwt.verify(token, ACCESS_TOKEN_SECRET);
+    
+    // Assuming the payload has the property "id"
+    if (!decoded.id) {
+      throw new Error('ID not found in token payload');
+    }
+    return decoded.id;
+  } catch (error) {
+    console.error('Error decoding JWT:', error);
+    throw error;
+  }
+}

@@ -1,27 +1,52 @@
-<!-- users-page.component.html -->
-
 <div class="container">
-    <!-- Message d'erreur -->
-    <div *ngIf="errorMessage" class="error-message">
-      <p>{{ errorMessage }}</p>
-    </div>
-  
-    <!-- Message de chargement -->
-    <div *ngIf="!errorMessage && users.length === 0" class="loading">
-      <p>Chargement des utilisateurs...</p>
-    </div>
-  
-    <!-- Liste des utilisateurs -->
-    <div class="cards-container" *ngIf="!errorMessage && users.length > 0">
-      <div class="card" *ngFor="let user of users">
-        <div class="card-header">
-          <h3>{{ user.nom }}</h3>
-        </div>
-        <div class="card-body">
-          <p><strong>Email:</strong> {{ user.email }}</p>
-          <p><strong>Adresse:</strong> {{ user.adresse }}</p>
-        </div>
-      </div>
-    </div>
+  <h2>Modifier les informations de l'utilisateur</h2>
+
+  <div *ngIf="errorMessage" class="error-message">
+    <p>{{ errorMessage }}</p>
   </div>
-  
+
+  <form *ngIf="user" #userForm="ngForm" (ngSubmit)="onSubmit(userForm)">
+    <div class="form-group">
+      <label for="nom">Nom</label>
+      <input type="text"
+             id="nom"
+             name="nom"
+             class="form-control"
+             required
+             [(ngModel)]="user.nom">
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email"
+             id="email"
+             name="email"
+             class="form-control"
+             required
+             [(ngModel)]="user.email">
+    </div>
+
+    <div class="form-group">
+      <label for="adresse">Adresse</label>
+      <input type="text"
+             id="adresse"
+             name="adresse"
+             class="form-control"
+             required
+             [(ngModel)]="user.adresse">
+    </div>
+
+    <div class="form-actions">
+      <button type="submit" class="btn btn-primary" [disabled]="userForm.invalid">
+        Mettre à jour
+      </button>
+      <button type="button" (click)="deleteUser()" class="btn btn-danger">
+        Supprimer
+      </button>
+    </div>
+  </form>
+
+  <div *ngIf="!errorMessage && !user" class="loading">
+    <p>Chargement de l'utilisateur...</p>
+  </div>
+</div>
