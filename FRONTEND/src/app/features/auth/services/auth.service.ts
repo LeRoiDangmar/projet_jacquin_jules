@@ -16,6 +16,23 @@ interface LoginResponse {
   token: string;
 }
 
+export interface DeleteUserResponse {
+  success: boolean;
+  message: string;
+}
+
+export interface UpdateUserRequest {
+  login: string;
+  email: string;
+  adresse: string;
+}
+
+export interface UpdateUserResponse {
+  success: boolean;
+  message: string;
+  data: Utilisateur;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -71,36 +88,38 @@ login(username: string, password: string): Observable<LoginResponse> {
     return this.http.get<Utilisateur>(url)
   }
 
-  deleteUser(): Observable<any> {
+  deleteUser(): Observable<DeleteUserResponse> {
     const url = `${this.apiUrl}/delete`;
     const body = "";
-    return this.http.post(url, body).pipe(
+  
+    return this.http.post<DeleteUserResponse>(url, body).pipe(
       catchError((error: HttpErrorResponse) => {
         console.error('Error occurred during the delete operation:', error);
-
+  
         let errorMessage = 'An error occurred while deleting the resource.';
         if (error.error instanceof ErrorEvent) {
           errorMessage = `Client-side error: ${error.error.message}`;
         } else {
           errorMessage = `Server returned code: ${error.status}, error message is: ${error.message}`;
         }
-
+  
         return throwError(() => new Error(errorMessage));
       })
     );
   }
+  
 
 
-  updateUser(user: Utilisateur): Observable<any> {
+  updateUser(user: Utilisateur): Observable<Utilisateur> {
     const url = `${this.apiUrl}/update`;
   
-    const body: any = {
-      login: user.nom,    
+    const body: Utilisateur = {
+      nom: user.nom,
       email: user.email,
       adresse: user.adresse,
     };
   
-    return this.http.post(url, body);
+    return this.http.post<Utilisateur>(url, body);
   }
   
 
